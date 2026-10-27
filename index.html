@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Yeni Nesle, Yeni Nesil Sınıf | Ferah ve Doğayla İç İçe Öğrenme Alanları</title>
+  <meta name="description" content="Yeni nesle, yeni nesil sınıf! Dört duvarı yıkan; ferah çalışma alanları, orman manzarası, doğal masif ahşap ve doğayla iç içe modern öğrenme mimarisi.">
+  <meta name="keywords" content="yeni nesle yeni sınıf, yeni nesil sınıf, ferah çalışma alanı, doğayla iç içe sınıf, biyofilik eğitim, esnek sınıf tasarımı">
+  <meta name="theme-color" content="#0e1713">
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="natural-body">
+
+  <!-- Giriş Ekranı (Preloader) -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-bg-glow"></div>
+    <div class="intro-content">
+      <div class="intro-badge">
+        <span>🌿 DOĞAYLA İÇ İÇE MİMARİ</span>
+      </div>
+      <div class="intro-logo">
+        <div class="tree-icon-anim">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22v-7M9 18l3-3 3 3M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/>
+          </svg>
+        </div>
+        <h1 class="intro-title">
+          <span>YENİ NESLE</span>
+          <span class="wood-gradient-text">YENİ NESİL SINIF</span>
+        </h1>
+      </div>
+      <p class="intro-subtitle">Ferah çalışma alanları, doğal ahşap ve doğayla bütünleşen yeni bir öğrenme kültürü...</p>
+      
+      <div class="intro-loader-box">
+        <div class="intro-progress-bar">
+          <div class="intro-progress-fill" id="intro-progress"></div>
+        </div>
+        <div class="intro-progress-text">
+          <span id="intro-status-text">Ferah mekan yerleşimi yükleniyor...</span>
+          <span id="intro-percentage">0%</span>
+        </div>
+      </div>
+      
+      <button id="skip-intro-btn" class="skip-btn">Sınıfı İncele &rarr;</button>
+    </div>
+  </div>
+
+  <!-- Hafif Doğal Arka Plan Parçacıkları (Mat ve Sakin) -->
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Navbar -->
+  <header class="main-header" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22v-7M9 18l3-3 3 3M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">YENİ NESİL SINIF</span>
+          <span class="brand-slogan">"Yeni nesle, yeni nesil sınıf"</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigasyon Menüsü -->
+      <nav class="nav-links">
+        <a href="#manifesto" class="nav-link">Felsefe</a>
+        <a href="#plan-analiz" class="nav-link">Plan Analizi</a>
+        <a href="#karsilastirma" class="nav-link">Eski vs Yeni</a>
+        <a href="#faydalar" class="nav-link">Faydalar</a>
+        <a href="#galeri" class="nav-link">Galeri</a>
+        <a href="#simulator" class="nav-link">Simülatör</a>
+        <a href="#test" class="nav-link">Test Et</a>
+      </nav>
+
+      <!-- Aksiyonlar -->
+      <div class="nav-actions">
+        <!-- Doğa Ambiyans Sesi Butonu -->
+        <button id="nature-sound-toggle" class="nature-sound-btn" title="Doğa Ambiyans Sesini Aç/Kapat" aria-label="Doğa Sesi">
+          <span class="sound-icon-note">🍃</span>
+          <span class="sound-txt">Doğa Sesi: <strong>Kapalı</strong></span>
+        </button>
+
+        <!-- Tıklama Sesleri Butonu -->
+        <button id="sound-toggle" class="icon-btn" title="Arayüz Sesleri" aria-label="Arayüz Sesi">
+          <svg class="sound-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="sound-off-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          </svg>
+        </button>
+
+        <a href="#galeri" class="btn btn-earth btn-sm">
+          <span>Projeleri Gör</span>
+        </a>
+
+        <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobil Çekmece Menü -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="drawer-header">
+        <div class="drawer-brand">🌿 YENİ NESLE YENİ SINIF</div>
+        <button id="drawer-close" class="drawer-close-btn">&times;</button>
+      </div>
+      <div class="drawer-nav">
+        <a href="#hero" class="drawer-link">Giriş</a>
+        <a href="#manifesto" class="drawer-link">Ferah & Doğal Felsefe</a>
+        <a href="#plan-analiz" class="drawer-link">Plan Çözümlemesi</a>
+        <a href="#karsilastirma" class="drawer-link">Eski Sınıf vs Yeni Sınıf</a>
+        <a href="#faydalar" class="drawer-link">Bilimsel Faydalar</a>
+        <a href="#galeri" class="drawer-link">Örnek Proje Galerisi</a>
+        <a href="#simulator" class="drawer-link">Yerleşim Simülatörü</a>
+        <a href="#test" class="drawer-link">Sınıfını Test Et</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text-col">
+          <div class="hero-tag natural-pill" data-reveal="fade-up">
+            <span class="leaf-icon">🌱</span>
+            <span>Doğayla Bütünleşen Ferah Öğrenme Mimarisi</span>
+          </div>
+          
+          <h1 class="hero-heading" data-reveal="fade-up" data-delay="100">
+            Yeni Nesle <br>
+            <span class="wood-gradient-text">Yeni Nesil Sınıf</span>
+          </h1>
+
+          <p class="hero-sub-slogan" data-reveal="fade-up" data-delay="150">
+            <span class="handwritten-tag">"Yeni nesle, yeni nesil sınıf..."</span>
+          </p>
+
+          <p class="hero-desc" data-reveal="fade-up" data-delay="200">
+            Karanlık ve basık beton sınıflar yerine; <strong>ferah çalışma alanları</strong>, 
+            <strong>orman manzaralı tavan-taban cam cepheler</strong>, <strong>çatıdan süzülen doğal gün ışığı</strong> ve 
+            <strong>doğal masif ahşap dalga masalarla</strong> çocukların doğayla iç içe, özgürce ürettiği yaşam alanları kuruyoruz.
+          </p>
+
+          <div class="hero-cta-group" data-reveal="fade-up" data-delay="300">
+            <a href="#plan-analiz" class="btn btn-earth btn-lg">
+              <span>Mimari Planı Keşfet</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#karsilastirma" class="btn btn-outline btn-lg">
+              <span>Eski vs Yeni Farkı</span>
+            </a>
+          </div>
+
+          <!-- Metrikler -->
+          <div class="hero-metrics" data-reveal="fade-up" data-delay="400">
+            <div class="metric-item">
+              <div class="metric-num"><span class="counter" data-target="94">0</span>%</div>
+              <div class="metric-label">Öğrenci Mutluluğu & Dikkat</div>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <div class="metric-num"><span class="counter" data-target="3">0</span> Kat</div>
+              <div class="metric-label">Daha Ferah ve Havadar Alan</div>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <div class="metric-num"><span class="counter" data-target="100">0</span>%</div>
+              <div class="metric-label">Doğal Ahşap & Gün Işığı</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Görsel: Mimari Plan & Etkileşimli İnceleme -->
+        <div class="hero-visual-col" data-reveal="zoom-in" data-delay="200">
+          <div class="hero-card-frame natural-frame">
+            <div class="hero-image-wrapper">
+              <img src="./assets/images/biyofilik-mimari-plan.jpg" alt="Yeni Nesle Yeni Nesil Sınıf Mimari Çizimi" class="hero-main-img" id="heroPlanImg">
+              
+              <!-- 6 Nokta İnceleme Pinleri -->
+              <div class="hotspot" style="top: 36%; left: 45%;" data-tooltip="🌱 Canlı İç Mekan Ağacı & Taş Saksı Alanı">
+                <span class="hotspot-pin">🌱</span>
+              </div>
+              <div class="hotspot" style="top: 70%; left: 45%;" data-tooltip="🪵 Kavisli Çok Seviyeli Oturma & Doğal Taş Dolgu">
+                <span class="hotspot-pin">🪵</span>
+              </div>
+              <div class="hotspot" style="top: 25%; left: 82%;" data-tooltip="🌲 Orman Manzaralı Panoramik Cam Duvar & Pergola">
+                <span class="hotspot-pin">🪟</span>
+              </div>
+              <div class="hotspot" style="top: 60%; left: 74%;" data-tooltip="✏️ Organik Dalga Formlu Modüler Masalar & Tabureler">
+                <span class="hotspot-pin">📐</span>
+              </div>
+              <div class="hotspot" style="top: 48%; left: 16%;" data-tooltip="☕ Fonksiyonel Mutfak & Sağlıklı İkram Alanı">
+                <span class="hotspot-pin">🥣</span>
+              </div>
+              <div class="hotspot" style="top: 88%; left: 82%;" data-tooltip="📖 Şömineli Sessiz Okuma & Düşünme Köşesi">
+                <span class="hotspot-pin">📖</span>
+              </div>
+
+              <!-- Mat Doğal Rozetler -->
+              <div class="floating-badge top-right">
+                <div class="badge-icon-natural">🌿</div>
+                <div>
+                  <div class="badge-title">Ferah Çalışma Alanı</div>
+                  <div class="badge-sub">Doğayla Bütünleşik Mimari</div>
+                </div>
+              </div>
+
+              <div class="floating-badge bottom-left">
+                <span class="handwritten-badge-txt">"Yeni nesle, yeni nesil sınıf"</span>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <div class="card-tag-natural">MİMARİ YERLEŞİM PLANI</div>
+              <p>Orman manzaralı cam cephe, amfi basamakları, servis alanı ve dalga masaların kuş bakışı yerleşimi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <a href="#manifesto" aria-label="Aşağı Kaydır">
+          <span class="mouse"><span class="wheel"></span></span>
+          <span class="scroll-text">Ferah sınıf mimarisini keşfedin</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- MANİFESTO BÖLÜMÜ -->
+    <section id="manifesto" class="section-padding manifesto-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge natural-badge">FERAH & DOĞAL ÖĞRENME</span>
+          <h2 class="section-title">Ferah Alanlarda, Doğayla İç İçe Büyüyen Bir Nesil</h2>
+          <p class="section-desc">
+            Çocukların zihinsel berraklığı mekanın ferahlığıyla doğrudan bağlantılıdır. 
+            <strong>"Yeni Nesle Yeni Sınıf"</strong>; sıkışık sıra düzenini geride bırakıp, bol oksijenli, ferah ve huzurlu bir öğrenme atmosferi kurar.
+          </p>
+        </div>
+
+        <div class="manifesto-grid">
+          
+          <div class="manifesto-card" data-reveal="fade-up" data-delay="100">
+            <div class="m-icon-box bg-natural-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-7M9 18l3-3 3 3M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/></svg>
+            </div>
+            <h3>1. Ferah Çalışma & Hareket Özgürlüğü</h3>
+            <p>
+              Sıkışık sıralar yerine öğrencilerin rahatça hareket edebileceği geniş sirkülasyon alanları ve nefes aldıran açık plan yerleşimi.
+            </p>
+            <div class="m-highlight">🌱 Yüksek hareket özgürlüğü ve ferahlık</div>
+          </div>
+
+          <div class="manifesto-card" data-reveal="fade-up" data-delay="200">
+            <div class="m-icon-box bg-natural-wood">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <h3>2. Doğal Masif Ahşap & Akustik Taş</h3>
+            <p>
+              Plastik ve sentetik malzemeler yerine doğal meşe, çam ve taş dolgular. Dokunulduğunda sakinleştiren, yankıyı yutan huzurlu dokular.
+            </p>
+            <div class="m-highlight">🪵 Doğal ses emilimi ve sakinlik</div>
+          </div>
+
+          <div class="manifesto-card" data-reveal="fade-up" data-delay="300">
+            <div class="m-icon-box bg-natural-sun">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line></svg>
+            </div>
+            <h3>3. Orman Manzaralı Cam Cephe & Işıklıklar</h3>
+            <p>
+              Doğrudan ormana açılan boydan boya camlar ve tavandaki çatı pencereleri sayesinde tüm sınıf doğal gün ışığıyla yıkanır.
+            </p>
+            <div class="m-highlight">☀️ Gözü dinlendiren doğal gün ışığı</div>
+          </div>
+
+          <div class="manifesto-card" data-reveal="fade-up" data-delay="400">
+            <div class="m-icon-box bg-natural-cozy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c3 4 5 7 5 11a5 5 0 0 1-10 0c0-4 2-7 5-11z"/></svg>
+            </div>
+            <h3>4. Şömine & Mutfak ile Sıcak Yuva</h3>
+            <p>
+              Soğuk kurum hissinden uzak; sıcak bitki çayı demlenen bir mini servis mutfağı ve şömineli sakin bir kitap okuma köşesi.
+            </p>
+            <div class="m-highlight">🏡 Okulda ev sıcaklığı ve yüksek aidiyet</div>
+          </div>
+
+        </div>
+
+        <!-- 3D Perspektif Vitrini -->
+        <div class="manifesto-perspective-banner" data-reveal="zoom-in" data-delay="200">
+          <div class="banner-img-wrap">
+            <img src="./assets/images/orman-manzarali-sinif.png" alt="Orman Manzaralı ve Doğayla İç İçe Ferah Sınıf Perspektifi">
+            <div class="banner-badge-center">
+              <span>FERAH ÇALIŞMA ALANI & DOĞAYLA İÇ İÇE MİMARİ</span>
+            </div>
+          </div>
+          <div class="banner-caption">
+            <div class="caption-quote">
+              "Öğrencilerin nefes alabildiği, gökyüzünü ve ağaçları izleyerek ürettiği ferah mekanlar; öğrenmeyi bir mecburiyetten çıkarıp ilhama dönüştürür."
+            </div>
+            <div class="caption-features">
+              <span>✦ Eğimli Ahşap Kirişler</span>
+              <span>✦ Çatı Pencereleri</span>
+              <span>✦ Masif Kütüphane</span>
+              <span>✦ Dalga Masalar</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MİMARİ PLAN ANALİZİ SECTION -->
+    <section id="plan-analiz" class="section-padding plan-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge earth-badge">MİMARİ ÇÖZÜMLEME</span>
+          <h2 class="section-title">Mimarın Kaleminden: Sınıfın Bölge Bölge Anatomisi</h2>
+          <p class="section-desc">
+            Çizimdeki her ayrıntı öğrencilerin ferahlığı, odaklanması ve doğayla teması düşünülerek konumlandırılmıştır.
+          </p>
+        </div>
+
+        <div class="plan-interactive-wrapper" data-reveal="fade-up">
+          
+          <div class="plan-tabs-row">
+            <button class="plan-tab-btn active" data-zone="tree">
+              <span class="tab-icon">🌱</span>
+              <span>1. Canlı Ağaç & Doğal Saksı</span>
+            </button>
+            <button class="plan-tab-btn" data-zone="amphi">
+              <span class="tab-icon">🛋️</span>
+              <span>2. Kavisli Taş Oturma</span>
+            </button>
+            <button class="plan-tab-btn" data-zone="tables">
+              <span class="tab-icon">📐</span>
+              <span>3. Dalga Masalar & Tabure</span>
+            </button>
+            <button class="plan-tab-btn" data-zone="glass">
+              <span class="tab-icon">🌲</span>
+              <span>4. Cam Duvar & Pergola</span>
+            </button>
+            <button class="plan-tab-btn" data-zone="kitchen">
+              <span class="tab-icon">☕</span>
+              <span>5. Fonksiyonel Mutfak</span>
+            </button>
+            <button class="plan-tab-btn" data-zone="fireplace">
+              <span class="tab-icon">📖</span>
+              <span>6. Şömineli Okuma Köşesi</span>
+            </button>
+          </div>
+
+          <div class="plan-details-display" id="planDetailsBox">
+            <div class="plan-detail-card">
+              <div class="plan-detail-header">
+                <span class="zone-badge" id="zoneBadge">DOĞAL ODAK NOKTASI</span>
+                <h3 id="zoneTitle">Merkezi Ağaç & Doğal Taş Saksı Alanı</h3>
+                <p class="zone-slogan-echo" id="zoneSub">"Ferah bir çalışma alanının yaşayan kalbi"</p>
+              </div>
+
+              <div class="plan-detail-grid">
+                <div class="plan-detail-info">
+                  <h4>Mimari & Pedagojik Amaç:</h4>
+                  <p id="zoneDesc">
+                    Sınıfın kalbinde yer alan doğal taş saksı içerisindeki canlı ağaç, mekana taze oksijen ve sakinleştirici bir doğal dokunuş kazandırır.
+                    Öğrenciler ders aralarında ve grup çalışmalarında bu yeşil adanın çevresinde toplanır.
+                  </p>
+
+                  <div class="specs-pill-list" id="zoneSpecs">
+                    <span class="spec-pill">✓ Doğal Harçlı Taş Duvar Saksı</span>
+                    <span class="spec-pill">✓ Canlı İç Mekan Ağacı & Doğal Toprak</span>
+                    <span class="spec-pill">✓ Doğal Çakıl Taş Dolgusu</span>
+                    <span class="spec-pill">✓ 360 Derece Rahat Dolaşım Alanı</span>
+                  </div>
+                </div>
+
+                <div class="plan-detail-quote-box">
+                  <div class="quote-icon">❝</div>
+                  <p id="zoneQuote">
+                    "Yeşilin ve doğal ahşabın olduğu ferah bir alanda öğrencinin dikkati dağılmaz, zihni sakinleşir ve üretkenliği artar."
+                  </p>
+                  <span class="quote-author" id="zoneAuthor">— Biyofilik Eğitim Tasarımı İlkeleri</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ESKİ VS YENİ KARŞILAŞTIRMA SECTION -->
+    <section id="karsilastirma" class="section-padding karsilastirma-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge danger-badge">BÜYÜK DÖNÜŞÜM</span>
+          <h2 class="section-title">Eski Klasik Sınıf vs. Yeni Nesil Ferah Sınıf</h2>
+          <p class="section-desc">
+            Sloganımız: <strong>"Yeni nesle, yeni nesil sınıf!"</strong> Dünün basık ve karanlık sıralarıyla bugünün açık fikirli çocuklarını sınırlamıyoruz.
+          </p>
+        </div>
+
+        <div class="comparison-mode-switch" data-reveal="fade-up">
+          <button class="mode-tab active" data-view="split">Yan Yana Kıyaslama</button>
+          <button class="mode-tab" data-view="slider">Canlı Öncesi / Sonrası Slider</button>
+          <button class="mode-tab" data-view="matrix">Detaylı Kriter Matrisi</button>
+        </div>
+
+        <!-- 1. SPLIT VIEW -->
+        <div id="split-view" class="comparison-display-block">
+          <div class="comparison-duel-grid">
+            
+            <!-- ESKİ SINIF -->
+            <div class="duel-card past-card" data-reveal="fade-right">
+              <div class="duel-header">
+                <span class="era-tag past">Eski Fabrika Düzeni</span>
+                <div class="duel-icon">🚫</div>
+                <h3>Geleneksel Eski Sınıf</h3>
+                <p class="duel-subtitle">Basık, hareketsiz ve doğadan kopuk</p>
+              </div>
+
+              <div class="duel-items-list">
+                <div class="duel-item bad">
+                  <div class="d-icon">❌</div>
+                  <div>
+                    <strong>Sıkışık Sıra Sıra Ahşap Masalar</strong>
+                    <p>Çocuklar arkadakinin ensesine bakar; hareket etmek ve rahatça yer değiştirmek imkansızdır.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item bad">
+                  <div class="d-icon">❌</div>
+                  <div>
+                    <strong>Sıfır Doğa, Kapalı Kutu Oda</strong>
+                    <p>Plastik zemin, yapay kaplamalar ve beton duvarlar. Doğal hiçbir malzeme yer almaz.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item bad">
+                  <div class="d-icon">❌</div>
+                  <div>
+                    <strong>Göz Yoran Soğuk Floresanlar</strong>
+                    <p>Güneş ışığını kesen eski perdeler ve sürekli baş ağrısı yaratan mekanik aydınlatma.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item bad">
+                  <div class="d-icon">❌</div>
+                  <div>
+                    <strong>Tek Yönlü Pasif Dinleme</strong>
+                    <p>Öğretmen tek taraflı konuşur; öğrenciler pasif olarak oturmak ve not almak zorundadır.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item bad">
+                  <div class="d-icon">❌</div>
+                  <div>
+                    <strong>Hızlı Yorgunluk ve İlgisizlik</strong>
+                    <p>Zil çalsa da dışarı çıksam denilen, enerjiyi ve motivasyonu tüketen durağan ortam.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="duel-score-bar">
+                <div class="score-label">
+                  <span>Öğrenci Mutluluğu & Zihinsel Canlılık</span>
+                  <span class="score-val red-text">%24</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar red-fill" style="width: 24%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="versus-circle">
+              <span>VS</span>
+            </div>
+
+            <!-- YENİ FERAH SINIF -->
+            <div class="duel-card future-card" data-reveal="fade-left">
+              <div class="glow-edge-natural"></div>
+              <div class="duel-header">
+                <span class="era-tag future-natural">Yeni Nesle, Yeni Nesil Sınıf</span>
+                <div class="duel-icon">🌿</div>
+                <h3>Yeni Nesil Ferah Sınıf</h3>
+                <p class="duel-subtitle">Ferah çalışma alanı, doğayla iç içe ve özgür</p>
+              </div>
+
+              <div class="duel-items-list">
+                <div class="duel-item good">
+                  <div class="d-icon">✨</div>
+                  <div>
+                    <strong>Geniş Dolaşım & Ferah Alanlar</strong>
+                    <p>Sıkışıklığı ortadan kaldıran geniş sirkülasyon hatları ve rahat hareket kabiliyeti.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item good">
+                  <div class="d-icon">✨</div>
+                  <div>
+                    <strong>Organik Dalga Masalar & Kademeli Oturma</strong>
+                    <p>Doğal ahşaptan kıvrımlı dalga masalar ve amfi hissi veren basamaklı doğal oturma alanları.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item good">
+                  <div class="d-icon">✨</div>
+                  <div>
+                    <strong>Orman Manzarası & Çatı Pencereleri</strong>
+                    <p>Panoramik cam cephe ve çatı ışıklıklarıyla sınıfa kesintisiz dolan doğal gün ışığı.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item good">
+                  <div class="d-icon">✨</div>
+                  <div>
+                    <strong>Şömineli Okuma Köşesi & Mutfak</strong>
+                    <p>Öğrencilerin bitki çayı demleyebileceği servis alanı ve kitap okuma koltuğu.</p>
+                  </div>
+                </div>
+
+                <div class="duel-item good">
+                  <div class="d-icon">✨</div>
+                  <div>
+                    <strong>Yüksek Odaklanma & Doğal Huzur</strong>
+                    <p>Stresin sıfırlandığı, takım çalışmasının kendiliğinden geliştiği ilham verici bir atmosfer.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="duel-score-bar">
+                <div class="score-label">
+                  <span>Öğrenci Mutluluğu & Zihinsel Canlılık</span>
+                  <span class="score-val green-text">%98</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar green-fill" style="width: 98%"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. SLIDER VIEW -->
+        <div id="slider-view" class="comparison-display-block hidden">
+          <div class="compare-slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+              <div class="slider-img img-before">
+                <div class="slider-overlay-text left">
+                  <span class="slider-tag red">ESKİ DÜZEN</span>
+                  <h3>Basık, Dar, Hareketsiz</h3>
+                  <p>Herkes aynı yöne baksın kuralı...</p>
+                </div>
+                <div class="slider-fake-old-classroom">
+                  <div class="old-blackboard">PASİF EZBERLEME</div>
+                  <div class="old-desks-grid">
+                    <div class="old-desk">Sıra 1</div><div class="old-desk">Sıra 2</div>
+                    <div class="old-desk">Sıra 3</div><div class="old-desk">Sıra 4</div>
+                    <div class="old-desk">Sıra 5</div><div class="old-desk">Sıra 6</div>
+                    <div class="old-desk">Sıra 7</div><div class="old-desk">Sıra 8</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slider-img img-after" id="afterImageLayer">
+                <img src="./assets/images/orman-manzarali-sinif.png" alt="Yeni Nesle Yeni Nesil Sınıf">
+                <div class="slider-overlay-text right">
+                  <span class="slider-tag green">FERAH VE DOĞAL</span>
+                  <h3>Orman Manzarası, Ahşap Kirişler, Ferahlık</h3>
+                  <p>Çatı pencereleri, dalga masalar ve yaşayan yeşil alanlar!</p>
+                </div>
+              </div>
+
+              <div class="slider-handle" id="sliderHandle">
+                <div class="handle-line"></div>
+                <div class="handle-circle">
+                  <span>🍃</span>
+                </div>
+              </div>
+            </div>
+            <p class="slider-hint">💡 Çubuğu kaydırarak eski sınıf ile ferah yeni sınıfı karşılaştırın.</p>
+          </div>
+        </div>
+
+        <!-- 3. MATRIX VIEW -->
+        <div id="matrix-view" class="comparison-display-block hidden">
+          <div class="table-responsive-wrapper">
+            <table class="comparison-matrix-table">
+              <thead>
+                <tr>
+                  <th>Kriter</th>
+                  <th>Geleneksel Eski Sınıf</th>
+                  <th class="future-th">🌿 Yeni Nesil Ferah Sınıf</th>
+                  <th>Sağlanan Kazanç</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Mekan Ferahlığı</strong></td>
+                  <td>Sıkışık sıralar, dar koridorlar</td>
+                  <td><span class="pill green">Geniş sirkülasyon, açık alan</span></td>
+                  <td>Klostrofobiyi ve stresi yok eder</td>
+                </tr>
+                <tr>
+                  <td><strong>Doğa ile Bağ</strong></td>
+                  <td>Beton duvarlar, sıfır yeşil</td>
+                  <td><span class="pill green">Panoramik orman manzarası & canlı bitkiler</span></td>
+                  <td>Zihinsel dinlenme ve yüksek dikkat</td>
+                </tr>
+                <tr>
+                  <td><strong>Masa Tasarımı</strong></td>
+                  <td>Düz, sert köşeli sıralar</td>
+                  <td><span class="pill green">Kıvrımlı dalga masalar & amfi oturma</span></td>
+                  <td>Doğal duruş ve esnek grup çalışması</td>
+                </tr>
+                <tr>
+                  <td><strong>Aydınlatma</strong></td>
+                  <td>Soğuk floresan ışıklar</td>
+                  <td><span class="pill green">Cam cephe & çatı pencereleri</span></td>
+                  <td>Göz yorgunluğunun sıfırlanması</td>
+                </tr>
+                <tr>
+                  <td><strong>Sosyal Alanlar</strong></td>
+                  <td>Mola alanı yok</td>
+                  <td><span class="pill green">Mutfak, şömineli okuma köşesi</span></td>
+                  <td>Okulda ev konforu ve aidiyet</td>
+                </tr>
+                <tr>
+                  <td><strong>Esneklik Hızı</strong></td>
+                  <td>Sıralar taşınamaz</td>
+                  <td><span class="pill green">60 saniyede istenen düzene geçiş</span></td>
+                  <td>Ders konusuna göre anında dönüşüm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAYDALAR SECTION -->
+    <section id="faydalar" class="section-padding faydalar-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge natural-badge">BİLİMSEL KANITLAR</span>
+          <h2 class="section-title">Ferah ve Doğal Sınıfın Kazandırdığı 6 Süper Güç</h2>
+          <p class="section-desc">Ferah çalışma alanları ve biyofilik tasarımın öğrenci başarısı üzerindeki etkileri.</p>
+        </div>
+
+        <div class="benefits-grid">
+          
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="100">
+            <div class="benefit-badge-num">01</div>
+            <div class="benefit-icon bg-natural-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-7M9 18l3-3 3 3M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/></svg>
+            </div>
+            <h3>Doğal Stres Emilimi & Huzur</h3>
+            <p>
+              Doğal ahşap dokuları ve yeşil manzarayı gören öğrencilerin nabzı dengelenir, sınav kaygısı ve ders stresi hissedilir şekilde azalır.
+            </p>
+            <div class="benefit-stat">
+              <strong>-%37</strong>
+              <span>Ders Kaygısı ve Stres Düşüşü</span>
+            </div>
+          </div>
+
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="200">
+            <div class="benefit-badge-num">02</div>
+            <div class="benefit-icon bg-natural-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Yüksek Odaklanma & Dikkat</h3>
+            <p>
+              Ferah bir alanda kıvrımlı dalga masalarda çalışan öğrencilerin dikkat süresi geleneksel sıralara göre ikiye katlanır.
+            </p>
+            <div class="benefit-stat">
+              <strong>+52%</strong>
+              <span>Ders İçi Kesintisiz Odak Süresi</span>
+            </div>
+          </div>
+
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="300">
+            <div class="benefit-badge-num">03</div>
+            <div class="benefit-icon bg-natural-wood">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3>Akran Öğrenmesi & İletişim</h3>
+            <p>
+              Kavisli amfi oturma basamakları ve dalga masalar sayesinde öğrenciler doğrudan göz teması kurar, fikirlerini rahatça paylaşır.
+            </p>
+            <div class="benefit-stat">
+              <strong>4 Kat</strong>
+              <span>Daha Çok Fikir Üretimi ve Diyalog</span>
+            </div>
+          </div>
+
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="400">
+            <div class="benefit-badge-num">04</div>
+            <div class="benefit-icon bg-natural-sun">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+            </div>
+            <h3>Doğal Gün Işığı & Göz Sağlığı</h3>
+            <p>
+              Tavandan tabana camlar ve tavan ışıklıkları, göz kaslarının uzağa ve yakına doğal odaklanmasını sağlayarak miyobu engeller.
+            </p>
+            <div class="benefit-stat">
+              <strong>%100</strong>
+              <span>Doğal Gün Işığı ile Aydınlanma</span>
+            </div>
+          </div>
+
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="500">
+            <div class="benefit-badge-num">05</div>
+            <div class="benefit-icon bg-natural-cozy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Okul Sevgisi & Devamsızlık Bitişi</h3>
+            <p>
+              İçinde mutfağı, çıtırdayan şöminesi ve rahat koltuğu olan ferah bir sınıfta çocuklar okula koşarak gelir.
+            </p>
+            <div class="benefit-stat">
+              <strong>-%85</strong>
+              <span>Ders Sıkıntısı ve Devamsızlık</span>
+            </div>
+          </div>
+
+          <div class="benefit-card natural-card" data-reveal="fade-up" data-delay="600">
+            <div class="benefit-badge-num">06</div>
+            <div class="benefit-icon bg-natural-wood">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <h3>60 Saniyede Düzen Değişimi</h3>
+            <p>
+              Hafif ahşap tabureler ve kıvrımlı dalga masalar anında birleşerek büyük bir münazara halkasına dönüşebilir.
+            </p>
+            <div class="benefit-stat">
+              <strong>60 Sn</strong>
+              <span>Yeni Ders Düzenine Geçiş Hızı</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERİ SECTION -->
+    <section id="galeri" class="section-padding galeri-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge natural-badge">PROJE VİTRİNİ</span>
+          <h2 class="section-title">Ferah Çalışma Alanları ve Biyofilik Sınıf Tasarımları</h2>
+          <p class="section-desc">
+            Mimari plan eskizinden açık atölyelere ve ferah iç mekanlara kadar 6 özgün öğrenme alanı.
+          </p>
+        </div>
+
+        <div class="gallery-filter-tabs" data-reveal="fade-up">
+          <button class="g-filter-btn active" data-filter="all">Tüm Projeler (6)</button>
+          <button class="g-filter-btn" data-filter="nature">🌿 Doğa & Ferah Alan (3)</button>
+          <button class="g-filter-btn" data-filter="modern">💡 Modüler & Atölye (3)</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryContainer">
+          
+          <div class="gallery-card g-item nature" data-reveal="fade-up" data-delay="100">
+            <div class="gallery-img-box">
+              <img src="./assets/images/biyofilik-mimari-plan.jpg" alt="Biyofilik Mimari Plan Çizimi" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-plan" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">MİMARİ ÇİZİM</span>
+            </div>
+            <div class="gallery-info">
+              <h3>Ferah Sınıf Yerleşim Planı</h3>
+              <p>Merkezi yeşil alan, kavisli oturma amfisi, mutfak ve şömineli okuma köşesini gösteren mimari plan.</p>
+              <div class="gallery-tags">
+                <span>#FerahAlan</span><span>#DoğalTaş</span><span>#Pergola</span><span>#YeniNesilSınıf</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card g-item nature" data-reveal="fade-up" data-delay="200">
+            <div class="gallery-img-box">
+              <img src="./assets/images/orman-manzarali-sinif.png" alt="Orman Manzaralı Biyofilik Sınıf Perspektifi" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-forest" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">İÇ PERSPEKTİF</span>
+            </div>
+            <div class="gallery-info">
+              <h3>Orman Manzarası & Ahşap Kirişli Tavan</h3>
+              <p>Masif ahşap kirişler, tavan skylight pencereleri, kütüphane duvarı ve ferah iç mekan perspektifi.</p>
+              <div class="gallery-tags">
+                <span>#OrmanManzarası</span><span>#AhşapKiriş</span><span>#Skylight</span><span>#Kütüphane</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card g-item nature" data-reveal="fade-up" data-delay="300">
+            <div class="gallery-img-box">
+              <img src="./assets/images/organik-ahsap-mobilya.png" alt="Organik Ahşap Dalga Masalar ve Canlı Bitkiler" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-furniture" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">MOBİLYA DETAYI</span>
+            </div>
+            <div class="gallery-info">
+              <h3>Organik Dalga Masalar & Bitki Rafları</h3>
+              <p>Çocukların rahat oturmasına uygun dalga masalar ve mekanı taze oksijenle bölen canlı saksı üniteleri.</p>
+              <div class="gallery-tags">
+                <span>#DalgaMasa</span><span>#AhşapTabure</span><span>#BitkiBölücü</span><span>#Ergonomi</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card g-item modern" data-reveal="fade-up" data-delay="400">
+            <div class="gallery-img-box">
+              <img src="./assets/images/moduler-sinif.jpg" alt="Modüler Sınıf ve Kademeli Oturma Alanı" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-modular" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">MODÜLER DÜZEN</span>
+            </div>
+            <div class="gallery-info">
+              <h3>Modüler Altıgen Ada & Kademeli Oturma</h3>
+              <p>Kademeli puf basamakları, ahşap akustik tavan ve ferah grup çalışma istasyonları.</p>
+              <div class="gallery-tags">
+                <span>#AltıgenPuf</span><span>#AkustikTavan</span><span>#GrupÇalışması</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card g-item modern" data-reveal="fade-up" data-delay="500">
+            <div class="gallery-img-box">
+              <img src="./assets/images/acik-atolye.png" alt="Açık Atölye ve Boydan Boya Beyaz Tahta" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-hallway" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">AÇIK ATÖLYE</span>
+            </div>
+            <div class="gallery-info">
+              <h3>Şeffaf Koridor & Yazılabilir Duvarlar</h3>
+              <p>Kapalı kapıları ortadan kaldıran şeffaf bölmeler ve koridoru projeye açan yazılabilir yüzeyler.</p>
+              <div class="gallery-tags">
+                <span>#ŞeffafMimari</span><span>#YazılabilirDuvar</span><span>#GenişKoridor</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card g-item modern" data-reveal="fade-up" data-delay="600">
+            <div class="gallery-img-box">
+              <img src="./assets/images/interaktif-alan.jpg" alt="İnteraktif Medya ve Yaratıcı Mola Alanı" loading="lazy">
+              <div class="gallery-overlay">
+                <button class="zoom-btn" data-modal="modal-breakout" aria-label="Büyüt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+              <span class="gallery-category-pill">MOLA KÖŞESİ</span>
+            </div>
+            <div class="gallery-info">
+              <h3>İnteraktif Ekran & Dinlenme Köşesi</h3>
+              <p>Öğrenci çalışmalarının sergilendiği panolar, sunum ekranı ve rahat minderli mola alanı.</p>
+              <div class="gallery-tags">
+                <span>#AkıllıEkran</span><span>#Minder</span><span>#ÖğrenciSergisi</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SİMÜLATÖR SECTION -->
+    <section id="simulator" class="section-padding simulator-section">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-badge earth-badge">CANLI ETKİLEŞİM</span>
+          <h2 class="section-title">Ferah Sınıf Düzeni Simülatörü</h2>
+          <p class="section-desc">
+            Aşağıdaki butonlara tıklayarak sınıfın saniyeler içinde farklı ders ihtiyaçlarına nasıl dönüştüğünü görün.
+          </p>
+        </div>
+
+        <div class="simulator-card natural-sim-card" data-reveal="zoom-in">
+          <div class="sim-controls">
+            <button class="sim-btn active" data-layout="team">
+              <span class="btn-icon">🌿</span>
+              <span>Grup & Takım Düzeni</span>
+            </button>
+            <button class="sim-btn" data-layout="amphi">
+              <span class="btn-icon">🏛️</span>
+              <span>Kavisli Amfi & Sunum</span>
+            </button>
+            <button class="sim-btn" data-layout="individual">
+              <span class="btn-icon">🌲</span>
+              <span>Orman Manzaralı Bireysel Odak</span>
+            </button>
+            <button class="sim-btn" data-layout="maker">
+              <span class="btn-icon">🪵</span>
+              <span>Geniş Atölye & Üretim</span>
+            </button>
+          </div>
+
+          <div class="sim-stage" id="simStage">
+            <div class="stage-room natural-stage-room">
+              <div class="room-wall top-wall-natural">
+                <span class="wall-label">PANORAMİK ORMAN MANZARALI CAM DUVAR & PERGOLA</span>
+              </div>
+              <div class="room-wall left-wall-natural">
+                <span class="wall-vertical-label">FONKSİYONEL MUTFAK & SERVİS ALANI</span>
+              </div>
+              <div class="room-wall right-wall-natural">
+                <span class="wall-vertical-label">ŞÖMİNELİ OKUMA KÖŞESİ & KÜTÜPHANE</span>
+              </div>
+
+              <div class="modules-container layout-team" id="modulesContainer">
+                
+                <div class="center-tree-sim">
+                  <div class="tree-trunk-icon">🌱</div>
+                  <div class="tree-pot-label">Doğal Taş Saksı</div>
+                </div>
+
+                <div class="module-cluster cluster-1 wave-table-sim">
+                  <div class="cluster-table wave-table">Grup A (Dalga Masa)</div>
+                  <div class="cluster-chairs">
+                    <span class="chair">🪵</span><span class="chair">🪵</span><span class="chair">🪵</span>
+                  </div>
+                </div>
+
+                <div class="module-cluster cluster-2 wave-table-sim">
+                  <div class="cluster-table wave-table">Grup B (Dalga Masa)</div>
+                  <div class="cluster-chairs">
+                    <span class="chair">🪵</span><span class="chair">🪵</span><span class="chair">🪵</span>
+                  </div>
+                </div>
+
+                <div class="module-cluster cluster-3 wave-table-sim">
+                  <div class="cluster-table wave-table">Grup C (Dalga Masa)</div>
+                  <div class="cluster-chairs">
+                    <span class="chair">🪵</span><span class="chair">🪵</span><span class="chair">🪵</span>
+                  </div>
+                </div>
+
+                <div class="lounge-module curved-stone-lounge">
+                  <div class="lounge-center stone-lounge">Kavisli Taş Oturma Basamağı</div>
+                  <div class="lounge-cushions">
+                    <span class="cushion">🍃</span><span class="cushion">🍃</span><span class="cushion">🍃</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="sim-info-bar">
+              <div class="sim-mode-tag" id="simModeTag">Aktif Düzen: Grup & Takım Düzeni</div>
+              <p id="simModeDesc">Dalga masalar ferah ortak üretim adalarına ayrıldı. Öğrenciler yüz yüze bakarak tartışır ve birlikte üretir.</p>
+              <div class="sim-badges">
+                <span class="s-badge">⚡ Dönüşüm: <strong>45 Saniye</strong></span>
+                <span class="s-badge">👥 Kapasite: <strong>24-32 Öğrenci</strong></span>
+                <span class="s-badge">🌿 Akustik: <strong>Doğal Masif Ahşap ve Taş</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST ET SECTION -->
+    <section id="test" class="section-padding test-section">
+      <div class="container">
+        <div class="quiz-wrapper" data-reveal="fade-up">
+          <div class="quiz-header text-center">
+            <span class="section-badge natural-badge">ÖZ DEĞERLENDİRME</span>
+            <h2 class="section-title">Sınıfınız Yeni Nesle Ne Kadar Hazır?</h2>
+            <p class="section-desc">5 hızlı soruyla sınıfınızın ferahlık, doğallık ve esneklik seviyesini ölçün.</p>
+          </div>
+
+          <div class="quiz-box natural-quiz-box" id="quizBox">
+            
+            <div class="quiz-q-group" data-q="1">
+              <h4 class="q-title">1. Sınıfınızda doğa unsurları (canlı bitki, doğal ahşap, taş) ne kadar var?</h4>
+              <div class="options-grid">
+                <label class="quiz-option">
+                  <input type="radio" name="q1" value="0">
+                  <span class="opt-box">
+                    <span class="opt-icon">🧱</span>
+                    <span class="opt-text">Hiç yok; sadece beton duvarlar, demir sıralar ve plastik zemin var</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1" value="10">
+                  <span class="opt-box">
+                    <span class="opt-icon">🪴</span>
+                    <span class="opt-text">Birkaç küçük saksı var ama mekanik bir oda</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1" value="20">
+                  <span class="opt-box">
+                    <span class="opt-icon">🌿</span>
+                    <span class="opt-text">Canlı bitkiler, ahşap dokular, taş dolgular ve orman manzarası mevcut</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-q-group" data-q="2">
+              <h4 class="q-title">2. Masalar ve oturma düzeni mekan ferahlığını nasıl etkiliyor?</h4>
+              <div class="options-grid">
+                <label class="quiz-option">
+                  <input type="radio" name="q2" value="0">
+                  <span class="opt-box">
+                    <span class="opt-icon">🪑</span>
+                    <span class="opt-text">Sıralar çok sıkışık, yürümek ve dönmek bile zor</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2" value="10">
+                  <span class="opt-box">
+                    <span class="opt-icon">🔄</span>
+                    <span class="opt-text">Orta düzeyde, bazen masaların yeri değişebiliyor</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2" value="20">
+                  <span class="opt-box">
+                    <span class="opt-icon">📐</span>
+                    <span class="opt-text">Kıvrımlı dalga masalar, ferah sirkülasyon ve kavisli oturma alanları var</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-q-group" data-q="3">
+              <h4 class="q-title">3. Gün ışığı ve havadarlık nasıl?</h4>
+              <div class="options-grid">
+                <label class="quiz-option">
+                  <input type="radio" name="q3" value="0">
+                  <span class="opt-box">
+                    <span class="opt-icon">💡</span>
+                    <span class="opt-text">Perdeler kapalı, beyaz floresan ışıklar yanıyor</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3" value="10">
+                  <span class="opt-box">
+                    <span class="opt-icon">🪟</span>
+                    <span class="opt-text">Standart pencereler var ama ışık ve hava yetersiz</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3" value="20">
+                  <span class="opt-box">
+                    <span class="opt-icon">☀️</span>
+                    <span class="opt-text">Panoramik tavan-taban cam cephe ve çatı pencereleri var</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-q-group" data-q="4">
+              <h4 class="q-title">4. Sınıfın akustiği ve ses yansıması nasıl?</h4>
+              <div class="options-grid">
+                <label class="quiz-option">
+                  <input type="radio" name="q4" value="0">
+                  <span class="opt-box">
+                    <span class="opt-icon">📢</span>
+                    <span class="opt-text">Çok yankı yapıyor, ayak sesleri ve uğultu baş ağrıtıyor</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q4" value="10">
+                  <span class="opt-box">
+                    <span class="opt-icon">🔇</span>
+                    <span class="opt-text">Orta düzeyde ses var</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q4" value="20">
+                  <span class="opt-box">
+                    <span class="opt-icon">🪵</span>
+                    <span class="opt-text">Masif ahşap kirişler ve taş dolgularla orman sakinliği var</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-q-group" data-q="5">
+              <h4 class="q-title">5. Öğrencilerin ders dışında mola verip nefes alabileceği sosyal alan var mı?</h4>
+              <div class="options-grid">
+                <label class="quiz-option">
+                  <input type="radio" name="q5" value="0">
+                  <span class="opt-box">
+                    <span class="opt-icon">🚪</span>
+                    <span class="opt-text">Yok, sadece sıralarda oturmak zorundalar</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q5" value="10">
+                  <span class="opt-box">
+                    <span class="opt-icon">🛋️</span>
+                    <span class="opt-text">Küçük bir köşe var ama çok dar</span>
+                  </span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q5" value="20">
+                  <span class="opt-box">
+                    <span class="opt-icon">☕</span>
+                    <span class="opt-text">Mini mutfak, şömineli okuma koltuğu ve kütüphane köşesi var</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-actions text-center">
+              <button id="calculate-score-btn" class="btn btn-earth btn-lg">
+                <span>Skorumu Hesapla</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <div id="quizResult" class="quiz-result hidden">
+              <div class="result-badge-circle">
+                <span id="resultScoreNum">0</span>
+                <small>/ 100</small>
+              </div>
+              <h3 id="resultTitle">Hesaplanıyor...</h3>
+              <p id="resultFeedback">Geri bildirim hazırlanıyor...</p>
+              <div class="result-cta">
+                <button id="retake-quiz-btn" class="btn btn-outline">Tekrar Çöz</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL LIGHTBOXES FOR GALLERY -->
+  <div id="galleryModal" class="gallery-modal hidden">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content-box">
+      <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      <div class="modal-body">
+        <img src="" alt="" id="modalImg" class="modal-main-img">
+        <div class="modal-details">
+          <span class="modal-badge" id="modalBadge">Kategori</span>
+          <h3 id="modalTitle">Proje Başlığı</h3>
+          <p id="modalDesc">Mimari teknik detaylar burada yer alır.</p>
+          <div class="modal-specs" id="modalSpecs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer natural-footer">
+    <div class="container footer-content">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22v-7M9 18l3-3 3 3M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="f-brand-name">YENİ NESİL SINIF</div>
+            <div class="f-slogan handwritten-footer-slogan">"Yeni nesle, yeni nesil sınıf"</div>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <a href="#hero">Giriş</a>
+          <a href="#manifesto">Felsefe</a>
+          <a href="#plan-analiz">Plan Analizi</a>
+          <a href="#karsilastirma">Eski vs Yeni</a>
+          <a href="#faydalar">Faydalar</a>
+          <a href="#galeri">Galeri</a>
+          <a href="#simulator">Simülatör</a>
+        </div>
+
+        <button id="back-to-top" class="back-to-top-btn" aria-label="Yukarı Çık">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Yeni Nesil Sınıf Projesi. "Yeni nesle, yeni nesil sınıf" felsefesiyle tasarlanmıştır.</p>
+        <div class="footer-tags">
+          <span>#YeniNesleYeniSınıf</span>
+          <span>#FerahÇalışmaAlanı</span>
+          <span>#Doğaylaİçİçe</span>
+          <span>#DoğalAhşap</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="./js/main.js"></script>
+</body>
+</html>
